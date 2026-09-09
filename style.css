@@ -658,26 +658,13 @@ section {
   isolation: isolate;
   background:
     linear-gradient(
-      135deg,
-      rgba(247, 241, 229, .80),
-      rgba(220, 231, 216, .90)
+      rgba(247, 241, 229, 0.48),
+      rgba(220, 231, 216, 0.62)
     ),
     url("assts/hayat-bali.webp") center center / cover no-repeat;
 }
 
-.venue-section::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255, 250, 240, .12),
-      rgba(20, 42, 32, .10)
-    );
-  pointer-events: none;
-}
+
 
 .venue-section .section-inner {
   position: relative;
