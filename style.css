@@ -515,3 +515,33 @@ section{position:relative;}
   position:relative; overflow:hidden; display:block;
 }
 .scroll-cue span::after
+
+/* Green and cream page palette */
+body {
+  background:
+    radial-gradient(circle at 15% 15%, rgba(74, 107, 87, 0.12), transparent 32%),
+    radial-gradient(circle at 85% 55%, rgba(201, 163, 93, 0.10), transparent 30%),
+    #f6f0e4;
+}
+
+.welcome-section,
+.timeline-intro,
+.venue-section {
+  background: linear-gradient(145deg, #faf6ee 0%, #edf1e9 100%);
+}
+
+.gallery-section,
+.rsvp-section {
+  background: linear-gradient(145deg, #e4eadf 0%, #faf6ee 100%);
+}
+
+.section-title {
+  color: #1f3a2e;
+}
+
+.venue-card,
+.rsvp-placeholder-box {
+  background: rgba(255, 253, 248, 0.78);
+  border: 1px solid rgba(74, 107, 87, 0.18);
+  box-shadow: 0 14px 35px rgba(31, 58, 46, 0.08);
+}
