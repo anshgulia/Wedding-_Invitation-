@@ -1,5 +1,5 @@
 
-// Ansh & Riya — Wedding Invitation Site
+// Ansh & Shefali — Wedding Invitation Site
 // ==========================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
