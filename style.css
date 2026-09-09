@@ -514,7 +514,6 @@ section{position:relative;}
   width:1px; height:34px; background: linear-gradient(180deg, var(--gold-light), transparent);
   position:relative; overflow:hidden; display:block;
 }
-.scroll-cue span::after
 
 /* Green and cream page palette */
 body {
@@ -544,4 +543,23 @@ body {
   background: rgba(255, 253, 248, 0.78);
   border: 1px solid rgba(74, 107, 87, 0.18);
   box-shadow: 0 14px 35px rgba(31, 58, 46, 0.08);
+}/* Stronger green and cream background */
+body,
+#main-site {
+  background: #e3eadf;
+}
+
+.welcome-section,
+.timeline-intro,
+.venue-section {
+  background: linear-gradient(135deg, #f7f0df 0%, #dce7da 100%);
+}
+
+.gallery-section,
+.rsvp-section {
+  background: linear-gradient(135deg, #cbdac8 0%, #edf1e7 100%);
+}
+
+.section-inner {
+  background: transparent;
 }
