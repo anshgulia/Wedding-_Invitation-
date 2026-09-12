@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500);
   });
 
-  // Fallback in case loading takes too long
   setTimeout(() => {
     loader.classList.add("hidden");
   }, 2500);
@@ -35,15 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   const mainSite = document.getElementById("main-site");
   const hero = document.getElementById("hero");
-
   const weddingMusic = document.getElementById(
     "wedding-music"
-  );
-  const musicToggle = document.getElementById(
-    "music-toggle"
-  );
-  const musicText = document.getElementById(
-    "music-text"
   );
 
 
@@ -56,30 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
     weddingMusic.loop = true;
   }
 
-  function updateMusicButton() {
-    if (!weddingMusic || !musicToggle || !musicText) {
-      return;
-    }
-
-    const playing = !weddingMusic.paused;
-
-    musicToggle.classList.toggle(
-      "playing",
-      playing
-    );
-
-    musicText.textContent = playing
-      ? "Pause Music"
-      : "Play Music";
-
-    musicToggle.setAttribute(
-      "aria-label",
-      playing
-        ? "Pause wedding music"
-        : "Play wedding music"
-    );
-  }
-
   async function playWeddingMusic() {
     if (!weddingMusic) {
       return;
@@ -89,39 +57,10 @@ document.addEventListener("DOMContentLoaded", () => {
       await weddingMusic.play();
     } catch (error) {
       console.log(
-        "The browser blocked automatic music playback."
+        "The browser blocked music playback:",
+        error
       );
     }
-
-    updateMusicButton();
-  }
-
-  if (musicToggle && weddingMusic) {
-    musicToggle.addEventListener("click", async () => {
-      if (weddingMusic.paused) {
-        await playWeddingMusic();
-      } else {
-        weddingMusic.pause();
-        updateMusicButton();
-      }
-    });
-
-    weddingMusic.addEventListener(
-      "play",
-      updateMusicButton
-    );
-
-    weddingMusic.addEventListener(
-      "pause",
-      updateMusicButton
-    );
-
-    weddingMusic.addEventListener(
-      "ended",
-      updateMusicButton
-    );
-
-    updateMusicButton();
   }
 
 
@@ -133,8 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (enterBtn) {
     enterBtn.addEventListener("click", () => {
-      // Start music during the user's click.
-      // Browsers normally allow audio after interaction.
+      // Starts the music when Enter the Celebration is pressed
       playWeddingMusic();
 
       envelope.classList.add("open");
@@ -328,7 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const opening =
         !card.classList.contains("is-flipped");
 
-      // Close every other card
       photoCards.forEach((otherCard) => {
         if (otherCard !== card) {
           otherCard.classList.remove(
