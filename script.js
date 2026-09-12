@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // The original untrimmed song will begin at 15 seconds.
   // When the song finishes, it restarts from 15 seconds.
-  const musicStartTime = 15;
+  const musicStartTime = 25;
 
   if (weddingMusic) {
     weddingMusic.volume = 0.45;
