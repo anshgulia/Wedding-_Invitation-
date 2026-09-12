@@ -14,12 +14,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("load", () => {
     setTimeout(() => {
-      loader.classList.add("hidden");
+      if (loader) {
+        loader.classList.add("hidden");
+      }
     }, 500);
   });
 
   setTimeout(() => {
-    loader.classList.add("hidden");
+    if (loader) {
+      loader.classList.add("hidden");
+    }
   }, 2500);
 
 
@@ -29,11 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const envelope = document.getElementById("envelope");
   const enterBtn = document.getElementById("enter-btn");
+
   const envelopeScreen = document.getElementById(
     "envelope-screen"
   );
+
   const mainSite = document.getElementById("main-site");
   const hero = document.getElementById("hero");
+
   const weddingMusic = document.getElementById(
     "wedding-music"
   );
@@ -43,17 +50,63 @@ document.addEventListener("DOMContentLoaded", () => {
      WEDDING MUSIC
      ========================================== */
 
+  // The original untrimmed song will begin at 15 seconds.
+  // When the song finishes, it restarts from 15 seconds.
+  const musicStartTime = 15;
+
   if (weddingMusic) {
     weddingMusic.volume = 0.45;
-    weddingMusic.loop = true;
+
+    // Native looping must remain disabled because it would
+    // restart the song from zero.
+    weddingMusic.loop = false;
   }
 
-  async function playWeddingMusic() {
+  function waitForMusicMetadata() {
+    return new Promise((resolve, reject) => {
+      if (!weddingMusic) {
+        reject(new Error("Wedding music was not found."));
+        return;
+      }
+
+      if (weddingMusic.readyState >= 1) {
+        resolve();
+        return;
+      }
+
+      weddingMusic.addEventListener(
+        "loadedmetadata",
+        resolve,
+        { once: true }
+      );
+
+      weddingMusic.addEventListener(
+        "error",
+        reject,
+        { once: true }
+      );
+
+      weddingMusic.load();
+    });
+  }
+
+  async function playWeddingMusic(
+    restartFromBeginning = true
+  ) {
     if (!weddingMusic) {
       return;
     }
 
     try {
+      await waitForMusicMetadata();
+
+      if (
+        restartFromBeginning ||
+        weddingMusic.currentTime < musicStartTime
+      ) {
+        weddingMusic.currentTime = musicStartTime;
+      }
+
       await weddingMusic.play();
     } catch (error) {
       console.log(
@@ -61,6 +114,23 @@ document.addEventListener("DOMContentLoaded", () => {
         error
       );
     }
+  }
+
+  if (weddingMusic) {
+    weddingMusic.addEventListener(
+      "ended",
+      async () => {
+        try {
+          weddingMusic.currentTime = musicStartTime;
+          await weddingMusic.play();
+        } catch (error) {
+          console.log(
+            "The music could not restart:",
+            error
+          );
+        }
+      }
+    );
   }
 
 
@@ -71,28 +141,41 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.style.overflow = "hidden";
 
   if (enterBtn) {
-    enterBtn.addEventListener("click", () => {
-      // Starts the music when Enter the Celebration is pressed
-      playWeddingMusic();
+    enterBtn.addEventListener(
+      "click",
+      () => {
+        // Music begins at 15 seconds when this button is pressed.
+        playWeddingMusic(true);
 
-      envelope.classList.add("open");
-      enterBtn.classList.add("hide");
-      enterBtn.disabled = true;
-
-      setTimeout(() => {
-        envelopeScreen.classList.add("gone");
-        document.body.style.overflow = "auto";
-        mainSite.classList.add("visible");
-
-        initRevealObserver();
-
-        if (hero) {
-          hero.scrollIntoView({
-            behavior: "auto"
-          });
+        if (envelope) {
+          envelope.classList.add("open");
         }
-      }, 1400);
-    });
+
+        enterBtn.classList.add("hide");
+        enterBtn.disabled = true;
+
+        setTimeout(() => {
+          if (envelopeScreen) {
+            envelopeScreen.classList.add("gone");
+          }
+
+          document.body.style.overflow = "auto";
+
+          if (mainSite) {
+            mainSite.classList.add("visible");
+          }
+
+          initRevealObserver();
+
+          if (hero) {
+            hero.scrollIntoView({
+              behavior: "auto"
+            });
+          }
+        }, 1400);
+      },
+      { once: true }
+    );
   }
 
 
