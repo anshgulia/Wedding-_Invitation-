@@ -1,131 +1,356 @@
+// Ansh & Shefali Wedding Invitation
 
-// Ansh & Shefali — Wedding Invitation Site
-// ==========================================================================
+document.addEventListener("DOMContentLoaded", () => {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-document.addEventListener('DOMContentLoaded', () => {
 
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* ==========================================
+     LOADER
+     ========================================== */
 
-  /* ---------- Loader ---------- */
-  const loader = document.getElementById('loader');
-  window.addEventListener('load', () => {
-    setTimeout(() => loader.classList.add('hidden'), 500);
-  });
-  // fallback in case 'load' already fired or takes too long
-  setTimeout(() => loader.classList.add('hidden'), 2500);
+  const loader = document.getElementById("loader");
 
-  /* ---------- Envelope open ---------- */
-  const envelope = document.getElementById('envelope');
-  const enterBtn = document.getElementById('enter-btn');
-  const envelopeScreen = document.getElementById('envelope-screen');
-  const mainSite = document.getElementById('main-site');
-
-  enterBtn.addEventListener('click', () => {
-    envelope.classList.add('open');
-    enterBtn.classList.add('hide');
-    enterBtn.disabled = true;
-
+  window.addEventListener("load", () => {
     setTimeout(() => {
-      envelopeScreen.classList.add('gone');
-      document.body.style.overflow = 'auto';
-      mainSite.classList.add('visible');
-      initRevealObserver();
-      document.getElementById('hero').scrollIntoView({ behavior: 'auto' });
-    }, 1400);
+      loader.classList.add("hidden");
+    }, 500);
   });
 
-  // Lock scroll while envelope screen is showing
-  document.body.style.overflow = 'hidden';
+  // Fallback in case loading takes too long
+  setTimeout(() => {
+    loader.classList.add("hidden");
+  }, 2500);
 
-  /* ---------- Countdown ---------- */
-  const weddingDate = new Date('2027-04-09T19:00:00+08:00').getTime(); // Bali time (WITA, UTC+8)
 
-  const cdDays = document.getElementById('cd-days');
-  const cdHours = document.getElementById('cd-hours');
-  const cdMins = document.getElementById('cd-mins');
-  const cdSecs = document.getElementById('cd-secs');
+  /* ==========================================
+     MAIN ELEMENTS
+     ========================================== */
 
-  function pad(n){ return String(n).padStart(2, '0'); }
+  const envelope = document.getElementById("envelope");
+  const enterBtn = document.getElementById("enter-btn");
+  const envelopeScreen = document.getElementById(
+    "envelope-screen"
+  );
+  const mainSite = document.getElementById("main-site");
+  const hero = document.getElementById("hero");
 
-  function updateCountdown(){
-    const now = Date.now();
-    const diff = weddingDate - now;
-    if (diff <= 0){
-      cdDays.textContent = '00'; cdHours.textContent = '00';
-      cdMins.textContent = '00'; cdSecs.textContent = '00';
+  const weddingMusic = document.getElementById(
+    "wedding-music"
+  );
+  const musicToggle = document.getElementById(
+    "music-toggle"
+  );
+  const musicText = document.getElementById(
+    "music-text"
+  );
+
+
+  /* ==========================================
+     WEDDING MUSIC
+     ========================================== */
+
+  if (weddingMusic) {
+    weddingMusic.volume = 0.45;
+    weddingMusic.loop = true;
+  }
+
+  function updateMusicButton() {
+    if (!weddingMusic || !musicToggle || !musicText) {
       return;
     }
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const mins = Math.floor((diff / (1000 * 60)) % 60);
-    const secs = Math.floor((diff / 1000) % 60);
 
-    cdDays.textContent = pad(days);
-    cdHours.textContent = pad(hours);
-    cdMins.textContent = pad(mins);
-    cdSecs.textContent = pad(secs);
+    const playing = !weddingMusic.paused;
+
+    musicToggle.classList.toggle(
+      "playing",
+      playing
+    );
+
+    musicText.textContent = playing
+      ? "Pause Music"
+      : "Play Music";
+
+    musicToggle.setAttribute(
+      "aria-label",
+      playing
+        ? "Pause wedding music"
+        : "Play wedding music"
+    );
   }
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
 
-  /* ---------- Scroll-triggered reveal (IntersectionObserver) ---------- */
-  function initRevealObserver(){
-    const revealEls = document.querySelectorAll('.reveal');
-    if (prefersReducedMotion){
-      revealEls.forEach(el => el.classList.add('in-view'));
+  async function playWeddingMusic() {
+    if (!weddingMusic) {
       return;
     }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting){
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    revealEls.forEach(el => observer.observe(el));
-  }
-
-  /* ---------- Lightweight parallax on hero (gated + passive) ---------- */
-  if (!prefersReducedMotion && window.innerWidth > 480){
-    const heroBg = document.querySelector('.hero-parallax-bg');
-    const hero = document.getElementById('hero');
-    let ticking = false;
-
-    function onScroll(){
-      if (!ticking){
-        window.requestAnimationFrame(() => {
-          const rect = hero.getBoundingClientRect();
-          if (rect.bottom > 0 && rect.top < window.innerHeight){
-            const offset = window.scrollY * 0.15;
-            heroBg.style.transform = `translate3d(0, ${offset}px, 0)`;
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
+    try {
+      await weddingMusic.play();
+    } catch (error) {
+      console.log(
+        "The browser blocked automatic music playback."
+      );
     }
-    window.addEventListener('scroll', onScroll, { passive: true });
+
+    updateMusicButton();
   }
-  /* Flipping photo memories */
 
-const photoCards = document.querySelectorAll(".photo-card");
-
-photoCards.forEach((card) => {
-  card.addEventListener("click", () => {
-    const opening = !card.classList.contains("is-flipped");
-
-    photoCards.forEach((otherCard) => {
-      if (otherCard !== card) {
-        otherCard.classList.remove("is-flipped");
-        otherCard.setAttribute("aria-pressed", "false");
+  if (musicToggle && weddingMusic) {
+    musicToggle.addEventListener("click", async () => {
+      if (weddingMusic.paused) {
+        await playWeddingMusic();
+      } else {
+        weddingMusic.pause();
+        updateMusicButton();
       }
     });
 
-    card.classList.toggle("is-flipped", opening);
-    card.setAttribute("aria-pressed", String(opening));
-  });
-});
+    weddingMusic.addEventListener(
+      "play",
+      updateMusicButton
+    );
 
+    weddingMusic.addEventListener(
+      "pause",
+      updateMusicButton
+    );
+
+    weddingMusic.addEventListener(
+      "ended",
+      updateMusicButton
+    );
+
+    updateMusicButton();
+  }
+
+
+  /* ==========================================
+     ENVELOPE OPENING
+     ========================================== */
+
+  document.body.style.overflow = "hidden";
+
+  if (enterBtn) {
+    enterBtn.addEventListener("click", () => {
+      // Start music during the user's click.
+      // Browsers normally allow audio after interaction.
+      playWeddingMusic();
+
+      envelope.classList.add("open");
+      enterBtn.classList.add("hide");
+      enterBtn.disabled = true;
+
+      setTimeout(() => {
+        envelopeScreen.classList.add("gone");
+        document.body.style.overflow = "auto";
+        mainSite.classList.add("visible");
+
+        initRevealObserver();
+
+        if (hero) {
+          hero.scrollIntoView({
+            behavior: "auto"
+          });
+        }
+      }, 1400);
+    });
+  }
+
+
+  /* ==========================================
+     COUNTDOWN
+     ========================================== */
+
+  const weddingDate = new Date(
+    "2027-04-09T19:00:00+08:00"
+  ).getTime();
+
+  const cdDays = document.getElementById("cd-days");
+  const cdHours = document.getElementById("cd-hours");
+  const cdMins = document.getElementById("cd-mins");
+  const cdSecs = document.getElementById("cd-secs");
+
+  function pad(number) {
+    return String(number).padStart(2, "0");
+  }
+
+  function updateCountdown() {
+    const now = Date.now();
+    const difference = weddingDate - now;
+
+    if (
+      !cdDays ||
+      !cdHours ||
+      !cdMins ||
+      !cdSecs
+    ) {
+      return;
+    }
+
+    if (difference <= 0) {
+      cdDays.textContent = "00";
+      cdHours.textContent = "00";
+      cdMins.textContent = "00";
+      cdSecs.textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(
+      difference / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+      (difference / (1000 * 60 * 60)) % 24
+    );
+
+    const minutes = Math.floor(
+      (difference / (1000 * 60)) % 60
+    );
+
+    const seconds = Math.floor(
+      (difference / 1000) % 60
+    );
+
+    cdDays.textContent = pad(days);
+    cdHours.textContent = pad(hours);
+    cdMins.textContent = pad(minutes);
+    cdSecs.textContent = pad(seconds);
+  }
+
+  updateCountdown();
+
+  setInterval(
+    updateCountdown,
+    1000
+  );
+
+
+  /* ==========================================
+     SCROLL REVEAL ANIMATIONS
+     ========================================== */
+
+  function initRevealObserver() {
+    const revealElements = document.querySelectorAll(
+      ".reveal"
+    );
+
+    if (prefersReducedMotion) {
+      revealElements.forEach((element) => {
+        element.classList.add("in-view");
+      });
+
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    revealElements.forEach((element) => {
+      observer.observe(element);
+    });
+  }
+
+
+  /* ==========================================
+     HERO PARALLAX
+     ========================================== */
+
+  if (
+    !prefersReducedMotion &&
+    window.innerWidth > 480
+  ) {
+    const heroBackground = document.querySelector(
+      ".hero-parallax-bg"
+    );
+
+    let ticking = false;
+
+    function handleScroll() {
+      if (
+        ticking ||
+        !heroBackground ||
+        !hero
+      ) {
+        return;
+      }
+
+      window.requestAnimationFrame(() => {
+        const heroPosition =
+          hero.getBoundingClientRect();
+
+        if (
+          heroPosition.bottom > 0 &&
+          heroPosition.top < window.innerHeight
+        ) {
+          const offset = window.scrollY * 0.15;
+
+          heroBackground.style.transform =
+            `translate3d(0, ${offset}px, 0)`;
+        }
+
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+
+    window.addEventListener(
+      "scroll",
+      handleScroll,
+      { passive: true }
+    );
+  }
+
+
+  /* ==========================================
+     FLIPPING PHOTO MEMORIES
+     ========================================== */
+
+  const photoCards = document.querySelectorAll(
+    ".photo-card"
+  );
+
+  photoCards.forEach((card) => {
+    card.addEventListener("click", () => {
+      const opening =
+        !card.classList.contains("is-flipped");
+
+      // Close every other card
+      photoCards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          otherCard.classList.remove(
+            "is-flipped"
+          );
+
+          otherCard.setAttribute(
+            "aria-pressed",
+            "false"
+          );
+        }
+      });
+
+      card.classList.toggle(
+        "is-flipped",
+        opening
+      );
+
+      card.setAttribute(
+        "aria-pressed",
+        String(opening)
+      );
+    });
+  });
 });
