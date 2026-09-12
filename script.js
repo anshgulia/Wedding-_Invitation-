@@ -108,5 +108,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.addEventListener('scroll', onScroll, { passive: true });
   }
+  /* Flipping photo memories */
+
+const photoCards = document.querySelectorAll(".photo-card");
+
+photoCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const opening = !card.classList.contains("is-flipped");
+
+    photoCards.forEach((otherCard) => {
+      if (otherCard !== card) {
+        otherCard.classList.remove("is-flipped");
+        otherCard.setAttribute("aria-pressed", "false");
+      }
+    });
+
+    card.classList.toggle("is-flipped", opening);
+    card.setAttribute("aria-pressed", String(opening));
+  });
+});
 
 });

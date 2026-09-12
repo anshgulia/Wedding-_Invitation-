@@ -526,6 +526,56 @@ section {
   transform: scale(1.05);
 }
 
+.photo-card {
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.photo-card-inner {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-style: preserve-3d;
+  transition: transform .85s var(--ease);
+}
+
+.photo-card.is-flipped .photo-card-inner {
+  transform: rotateY(180deg);
+}
+
+.photo-card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.photo-card-back {
+  padding: clamp(1rem, 3vw, 2rem);
+  color: var(--ivory);
+  text-align: center;
+  background: radial-gradient(circle at 20% 15%, #c89b4738, transparent 34%), linear-gradient(145deg, #355746, #142a20);
+  transform: rotateY(180deg);
+}
+
+.memory-number { color: var(--gold-light); font: .62rem var(--font-body); letter-spacing: .24em; }
+.memory-title { margin: .55rem 0 .7rem; color: var(--gold-light); font: 600 clamp(1.15rem, 3vw, 2rem) var(--font-display); line-height: 1.08; }
+.memory-story { max-width: 34rem; font: clamp(.82rem, 2vw, 1.15rem)/1.45 var(--font-script); }
+.flip-hint, .flip-back { position: absolute; bottom: .7rem; left: 50%; translate: -50% 0; padding: .38rem .65rem; border-radius: 999px; white-space: nowrap; font: 600 .5rem var(--font-body); letter-spacing: .12em; text-transform: uppercase; }
+.flip-hint { color: #fff; background: #142a20aa; backdrop-filter: blur(5px); }
+.flip-back { color: var(--gold-light); opacity: .75; }
+.photo-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
 .ph-placeholder {
   display: grid;
   place-items: center;
