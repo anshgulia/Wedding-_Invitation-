@@ -349,9 +349,9 @@
 }
 @media(max-width:680px){
   .event-card.mehendi{width:min(94%,430px)}
-  .mehendi .event-copy{top:10%;left:15%;right:15%;height:52%;padding:.3rem}
+  .mehendi .event-copy{top:7%;left:17%;right:17%;height:49%;padding:.3rem;color:#203b31}
   .mehendi .event-day{font-size:.48rem}
-  .mehendi .event-copy h3{font-size:clamp(1.75rem,8vw,2.35rem)}
-  .mehendi .event-copy>p:not(.event-day){font-size:.78rem}
-  .mehendi .event-copy small{font-size:.68rem;line-height:1.15}
+  .mehendi .event-copy h3{color:#6d332f;font-size:clamp(1.75rem,8vw,2.35rem)}
+  .mehendi .event-copy>p:not(.event-day){color:#1d392f;font-size:.78rem}
+  .mehendi .event-copy small{width:100%;max-width:245px;color:#263d32;font-size:.68rem;font-weight:600;line-height:1.3}
 }
