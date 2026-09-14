@@ -538,3 +538,85 @@
     padding:.25rem;
   }
 }
+
+
+/* Dinner card: portrait photograph with text directly over the open evening sky. */
+.event-card.dinner{
+  position:relative;
+  display:block;
+  width:min(100%,620px);
+  min-height:0;
+  aspect-ratio:2/3;
+  background:#17261f;
+}
+.dinner .event-art{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:0;
+  background:#17261f url("assts/dinner.jpg") center/cover no-repeat;
+}
+.dinner .event-art>.lights,
+.dinner .event-art>.table{display:none}
+.dinner .event-copy{
+  position:absolute;
+  z-index:2;
+  top:3%;
+  left:15%;
+  right:15%;
+  height:25%;
+  min-height:0;
+  padding:.3rem;
+  justify-content:center;
+  color:#fff9ed;
+  background:transparent;
+  text-shadow:
+    0 2px 3px rgba(6,12,9,1),
+    0 0 10px rgba(6,12,9,.96),
+    0 0 24px rgba(6,12,9,.82);
+}
+.dinner .event-day{color:#fff0d0;font-weight:600}
+.dinner .event-copy h3{
+  margin:.15rem 0;
+  color:#fff7e5;
+  font-size:clamp(2.4rem,7vw,3.8rem);
+  line-height:.95;
+  text-shadow:
+    0 2px 3px rgba(5,10,8,1),
+    0 0 12px rgba(5,10,8,.98),
+    0 0 28px rgba(5,10,8,.85);
+}
+.dinner .event-rule{
+  width:44px;
+  margin:.35rem 0 .55rem;
+  background:#edc779;
+  box-shadow:0 1px 4px rgba(5,10,8,.95);
+}
+.dinner .event-copy>p:not(.event-day){
+  margin:.06rem 0;
+  color:#fff9ed;
+  font-weight:600;
+}
+.dinner .event-copy small{
+  max-width:310px;
+  margin-top:.4rem;
+  color:#fff2d8;
+  font-weight:600;
+  line-height:1.25;
+  opacity:1;
+}
+@media(max-width:680px){
+  .event-card.dinner{width:min(94%,430px)}
+  .dinner .event-copy{
+    top:2.5%;
+    left:12%;
+    right:12%;
+    height:26%;
+    padding:.2rem;
+  }
+  .dinner .event-day{font-size:.48rem}
+  .dinner .event-copy h3{font-size:clamp(2rem,10vw,2.75rem)}
+  .dinner .event-copy>p:not(.event-day){font-size:.76rem}
+  .dinner .event-copy small{margin-top:.32rem;font-size:.68rem}
+}
