@@ -223,3 +223,15 @@
   .hero-invite{margin-top:.55rem}
   .scroll-prompt{margin-top:.45rem}
 }
+
+/* Single uppercase signature prevents the opening monogram order changing responsively. */
+.monogram-button .monogram-letters{
+  left:50%;
+  right:auto;
+  top:50%;
+  width:max-content;
+  color:var(--ink);
+  font:400 5.8rem/1 "Great Vibes",cursive;
+  letter-spacing:-.08em;
+  transform:translate(-52%,-48%)!important;
+}
