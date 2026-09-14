@@ -6,6 +6,19 @@ document.addEventListener("DOMContentLoaded",()=>{
   const musicToggle=document.getElementById("music-toggle");
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  const petals=document.getElementById("falling-petals");
+  if(petals&&!reduced){
+    for(let i=0;i<18;i+=1){
+      const petal=document.createElement("span");
+      petal.className="petal";
+      petal.style.left=`${Math.random()*100}%`;
+      petal.style.setProperty("--fall-time",`${7+Math.random()*7}s`);
+      petal.style.setProperty("--fall-delay",`${-Math.random()*14}s`);
+      petal.style.transform=`scale(${.55+Math.random()*.8}) rotate(${Math.random()*180}deg)`;
+      petals.appendChild(petal);
+    }
+  }
+
   if(music){music.volume=.42;music.loop=true}
   const startMusic=async()=>{if(!music)return;try{if(music.currentTime<25)music.currentTime=25;await music.play();musicToggle?.classList.remove("paused")}catch(e){musicToggle?.classList.add("paused")}};
   openButton?.addEventListener("click",()=>{

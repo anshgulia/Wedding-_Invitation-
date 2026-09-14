@@ -9,3 +9,76 @@
 @media(max-width:680px){.hero-copy{padding-top:8vh}.couple-photo{height:52%;width:92vw}.event-card{grid-template-columns:1fr;margin-bottom:2rem}.event-card:nth-of-type(even) .event-art{order:0}.event-art{min-height:300px}.event-copy{min-height:260px;padding:2rem 1.2rem}.countdown strong{font-size:1.7rem}.countdown span{font-size:.4rem}.venue-photo{height:52vh}}
 @media(min-width:900px){.gate::before,.gate::after{width:30vw}.hero-palms{font-size:22rem}.couple-photo{height:58%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+
+/* Photographic hero refresh */
+.hero{
+  background:#c7e1e5 url("assts/hero-beach-v2.webp") center center/cover no-repeat;
+  isolation:isolate;
+}
+.hero::after{display:none}
+.hero-sky{
+  z-index:0;
+  opacity:1;
+  background:
+    linear-gradient(180deg,rgba(255,250,242,.72) 0%,rgba(255,250,242,.25) 28%,rgba(17,58,57,.05) 58%,rgba(10,37,34,.38) 100%),
+    url("assts/hero-beach-v2.webp") center center/cover no-repeat;
+  animation:heroDrift 18s ease-in-out infinite alternate;
+  transform:scale(1.03);
+}
+.hero-copy{
+  z-index:3;
+  margin-top:clamp(1rem,4vh,3rem);
+  padding:1.35rem 1.6rem 1.1rem;
+  border:1px solid rgba(255,255,255,.42);
+  border-radius:22px;
+  background:rgba(255,250,244,.5);
+  box-shadow:0 12px 42px rgba(20,58,54,.12);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+}
+.hero-palms{display:none}
+.couple-photo{
+  bottom:clamp(76px,10vh,112px);
+  width:min(92vw,700px);
+  height:auto;
+  aspect-ratio:3/2;
+  background-image:url("assts/DSC07613.webp");
+  background-position:center;
+  background-size:100% 100%;
+  border:4px solid rgba(255,255,255,.8);
+  border-radius:18px;
+  box-shadow:0 20px 55px rgba(13,50,48,.28);
+  overflow:hidden;
+}
+.couple-photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:14px;
+  box-shadow:inset 0 0 30px rgba(9,49,48,.08);
+}
+.falling-petals{position:absolute;inset:-15% 0 0;z-index:4;pointer-events:none;overflow:hidden}
+.petal{
+  position:absolute;
+  top:-12%;
+  width:10px;
+  height:16px;
+  border-radius:80% 15% 70% 25%;
+  background:linear-gradient(145deg,#f7c7c4,#fff0de);
+  box-shadow:0 2px 5px rgba(111,63,47,.16);
+  opacity:.75;
+  animation:petalFall var(--fall-time) linear var(--fall-delay) infinite,
+            petalSway 2.8s ease-in-out infinite alternate;
+}
+@keyframes heroDrift{from{transform:scale(1.03) translate3d(-.4%,0,0)}to{transform:scale(1.09) translate3d(.4%,-.5%,0)}}
+@keyframes petalFall{0%{top:-12%;transform:rotate(0deg)}100%{top:112%;transform:rotate(420deg)}}
+@keyframes petalSway{from{margin-left:-14px}to{margin-left:18px}}
+@media(max-width:680px){
+  .hero-copy{margin-top:2vh;padding:1rem 1.15rem .85rem;max-width:92vw}
+  .hero h2{font-size:clamp(2.8rem,12vw,3.7rem)}
+  .couple-photo{width:94vw;height:auto;bottom:clamp(78px,10vh,96px)}
+}
+@media(max-height:720px) and (max-width:680px){
+  .hero-copy{margin-top:0;transform:scale(.9);transform-origin:top center}
+  .couple-photo{width:min(85vw,520px);bottom:70px}
+}
