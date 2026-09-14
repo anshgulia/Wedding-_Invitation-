@@ -153,3 +153,30 @@
   .hero-copy{margin-top:0;transform:none}
   .couple-photo{width:94vw;bottom:auto}
 }
+
+/* Soften the portrait into the beach and keep the petals over the photograph. */
+.couple-photo{
+  width:min(84vw,620px);
+  border:0;
+  border-radius:24px;
+  box-shadow:0 16px 42px rgba(13,50,48,.16);
+  filter:saturate(.88) contrast(.94) brightness(1.025);
+  -webkit-mask-image:radial-gradient(ellipse 99% 96% at center,#000 67%,rgba(0,0,0,.96) 78%,transparent 100%);
+  mask-image:radial-gradient(ellipse 99% 96% at center,#000 67%,rgba(0,0,0,.96) 78%,transparent 100%);
+}
+.couple-photo::after{
+  border-radius:24px;
+  box-shadow:inset 0 0 34px rgba(247,236,219,.24);
+}
+.couple-photo .falling-petals{
+  inset:0;
+  z-index:8;
+  overflow:hidden;
+}
+.couple-photo .petal{opacity:.82;filter:none}
+@media(max-width:680px){
+  .couple-photo{width:88vw;margin:.75rem auto .35rem}
+}
+@media(max-height:720px) and (max-width:680px){
+  .couple-photo{width:86vw}
+}
