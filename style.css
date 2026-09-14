@@ -42,7 +42,7 @@
   width:min(92vw,700px);
   height:auto;
   aspect-ratio:3/2;
-  background-image:url("assts/DSC07613.webp");
+  background-image:url("assts/hero-couple-v2.webp");
   background-position:center;
   background-size:100% 100%;
   border:4px solid rgba(255,255,255,.8);
@@ -81,4 +81,36 @@
 @media(max-height:720px) and (max-width:680px){
   .hero-copy{margin-top:0;transform:scale(.9);transform-origin:top center}
   .couple-photo{width:min(85vw,520px);bottom:70px}
+}
+
+/* Closing photograph: the former hero image, blended into the final panel */
+.closing{
+  z-index:0;
+  min-height:78svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;
+  overflow:hidden;
+  background:#173a33;
+}
+.closing::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-2;
+  background:url("assts/DSC07613.webp") center center/cover no-repeat;
+  transform:scale(1.025);
+}
+.closing::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(10,38,34,.08) 0%,rgba(10,38,34,.15) 42%,rgba(10,38,34,.82) 78%,#173a33 100%);
+}
+.closing .closing-monogram,.closing>p,.closing>h2,.closing>small{position:relative;z-index:1;text-shadow:0 2px 18px rgba(0,0,0,.38)}
+@media(max-width:680px){
+  .closing{min-height:72svh;padding-bottom:4.5rem}
+  .closing::before{background-size:auto 100%;background-position:center top}
 }
