@@ -487,3 +487,54 @@
   .wedding .event-copy>p:not(.event-day){font-size:.75rem}
   .wedding .event-copy small{margin-top:.4rem;font-size:.68rem}
 }
+
+
+/* Wedding refinement: typography sits directly on the photograph, with no panel. */
+.wedding .event-copy{
+  top:26%;
+  left:19%;
+  right:19%;
+  height:31%;
+  padding:.35rem;
+  color:#fffaf0;
+  background:transparent;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  text-shadow:
+    0 2px 3px rgba(20,12,8,.98),
+    0 0 10px rgba(20,12,8,.88),
+    0 0 24px rgba(20,12,8,.72);
+}
+.wedding .event-day{color:#fff6df;font-weight:600}
+.wedding .event-copy h3{
+  color:#fff8e8;
+  text-shadow:
+    0 2px 3px rgba(37,18,8,1),
+    0 0 12px rgba(37,18,8,.95),
+    0 0 28px rgba(37,18,8,.75);
+}
+.wedding .event-rule{
+  width:44px;
+  background:#f3d69a;
+  box-shadow:0 1px 4px rgba(26,13,7,.9);
+}
+.wedding .event-copy>p:not(.event-day),
+.wedding .event-copy small{
+  color:#fffaf0;
+  text-shadow:
+    0 2px 3px rgba(20,12,8,1),
+    0 0 9px rgba(20,12,8,.96),
+    0 0 20px rgba(20,12,8,.78);
+}
+@media(max-width:680px){
+  .wedding .event-copy{
+    top:25%;
+    left:16%;
+    right:16%;
+    height:33%;
+    padding:.25rem;
+  }
+}
