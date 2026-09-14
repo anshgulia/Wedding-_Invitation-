@@ -410,3 +410,80 @@
   .haldi .event-copy>p:not(.event-day){font-size:.78rem}
   .haldi .event-copy small{margin-top:.45rem;font-size:.7rem}
 }
+
+
+/* Beach Wedding card: portrait photograph with copy locked inside the arch opening. */
+.event-card.wedding{
+  position:relative;
+  display:block;
+  width:min(100%,620px);
+  min-height:0;
+  aspect-ratio:1085/1450;
+  background:#d8b185;
+}
+.wedding .event-art{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  min-height:0;
+  background:#d8b185 url("assts/wedding-beach.png") center/cover no-repeat;
+}
+.wedding .event-art>.mandap,
+.wedding .event-art>.floral{display:none}
+.wedding .event-copy{
+  position:absolute;
+  z-index:2;
+  top:26%;
+  left:21%;
+  right:21%;
+  height:31%;
+  min-height:0;
+  padding:clamp(.65rem,2vw,1rem);
+  justify-content:center;
+  color:#263e3a;
+  background:rgba(255,248,237,.76);
+  border:1px solid rgba(255,255,255,.68);
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(58,33,20,.16);
+  text-shadow:0 1px 2px rgba(255,255,255,.95);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.wedding .event-day{color:#6b543a}
+.wedding .event-copy h3{
+  margin:.2rem 0;
+  color:#81502f;
+  font-size:clamp(2.35rem,7vw,3.8rem);
+  line-height:.95;
+}
+.wedding .event-rule{margin:.4rem 0 .65rem;background:#ad7b48}
+.wedding .event-copy>p:not(.event-day){
+  margin:.08rem 0;
+  color:#253d39;
+  font-weight:600;
+  line-height:1.3;
+}
+.wedding .event-copy small{
+  max-width:300px;
+  margin-top:.55rem;
+  color:#62452f;
+  font-weight:600;
+  line-height:1.3;
+  opacity:1;
+}
+@media(max-width:680px){
+  .event-card.wedding{width:min(94%,430px)}
+  .wedding .event-copy{
+    top:25%;
+    left:19%;
+    right:19%;
+    height:33%;
+    padding:.45rem .35rem;
+    border-radius:14px;
+  }
+  .wedding .event-day{font-size:.48rem}
+  .wedding .event-copy h3{font-size:clamp(2rem,10vw,2.8rem)}
+  .wedding .event-copy>p:not(.event-day){font-size:.75rem}
+  .wedding .event-copy small{margin-top:.4rem;font-size:.68rem}
+}
