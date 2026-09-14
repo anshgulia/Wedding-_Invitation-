@@ -180,3 +180,46 @@
 @media(max-height:720px) and (max-width:680px){
   .couple-photo{width:86vw}
 }
+
+/* Full-hero petals, compact mobile rhythm, and the S&A signature mark. */
+.hero>.falling-petals{
+  position:absolute;
+  inset:0;
+  z-index:8;
+  overflow:hidden;
+  pointer-events:none;
+}
+.hero>.falling-petals .petal{opacity:.78}
+.hero-invite{
+  position:relative;
+  z-index:9;
+  width:min(82vw,520px);
+  margin:.65rem auto .45rem;
+  color:#f9f4eb;
+  font:italic 1.12rem/1.35 var(--serif);
+  text-align:center;
+  text-shadow:0 2px 14px rgba(6,35,32,.82);
+}
+.scroll-prompt{z-index:9}
+.monogram-button{
+  font-family:"Great Vibes",cursive;
+  font-size:6.7rem;
+}
+.monogram-s{left:22px;right:auto}
+.monogram-a{right:24px;left:auto}
+.monogram-amp{font-family:"Great Vibes",cursive;font-size:2.45rem}
+.monogram-button::before,.monogram-button::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  width:28px;
+  height:1px;
+  background:linear-gradient(90deg,transparent,#b98b3d);
+}
+.monogram-button::before{left:-22px}
+.monogram-button::after{right:-22px;transform:scaleX(-1)}
+@media(max-width:680px){
+  .hero{min-height:auto;padding-bottom:2.2rem}
+  .hero-invite{margin-top:.55rem}
+  .scroll-prompt{margin-top:.45rem}
+}
