@@ -287,3 +287,14 @@
   opacity:.66;
   filter:drop-shadow(0 2px 3px rgba(65,39,28,.14));
 }
+
+/* Cleaned floral artwork for Mehendi & Sangeet. */
+.mehendi .event-art{
+  aspect-ratio:900/1218;
+  background:#e9b082 url("assts/mehendi-sangeet-v2.webp") center/cover no-repeat;
+}
+.mehendi .event-art>.lantern,
+.mehendi .event-art>.stage{display:none}
+@media(max-width:680px){
+  .mehendi .event-art{min-height:0}
+}
