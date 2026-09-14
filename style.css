@@ -362,8 +362,8 @@
   display:block;
   width:min(100%,620px);
   min-height:0;
-  aspect-ratio:718/1246;
-  background:#f7ddc7;
+  aspect-ratio:1149/1379;
+  background:#e9a928;
 }
 .haldi .event-art{
   position:absolute;
@@ -371,40 +371,42 @@
   width:100%;
   height:100%;
   min-height:0;
-  background:#f7ddc7 url("assts/haldi-couple-v1.webp") center/cover no-repeat;
+  background:#e9a928 url("assts/haldi.png") center/cover no-repeat;
 }
 .haldi .event-copy{
   position:absolute;
   z-index:2;
-  top:10%;
-  left:14%;
-  right:14%;
-  height:39%;
+  top:19%;
+  left:24%;
+  right:18%;
+  height:43%;
   min-height:0;
   padding:.5rem;
   justify-content:center;
-  color:#315340;
+  color:#4b391a;
   background:transparent;
-  text-shadow:0 1px 2px rgba(255,246,225,.95);
+  text-shadow:
+    0 1px 2px rgba(255,238,175,.98),
+    0 0 10px rgba(255,209,76,.68);
 }
-.haldi .event-day{color:#745c31}
+.haldi .event-day{color:#59411e;font-weight:600}
 .haldi .event-copy h3{
   margin:.35rem 0;
-  color:#b56b16;
-  font-size:clamp(2.8rem,7vw,4rem);
+  color:#8b4215;
+  font-size:clamp(3rem,7.4vw,4.25rem);
   line-height:1;
 }
-.haldi .event-rule{margin:.5rem 0;background:#c58a32}
+.haldi .event-rule{margin:.5rem 0;background:#8f551d}
 .haldi .event-copy>p:not(.event-day){margin:.1rem 0;font-weight:600}
 .haldi .event-copy small{
   margin-top:.65rem;
-  color:#6f4c25;
+  color:#60401f;
   font-weight:600;
   opacity:1;
 }
 @media(max-width:680px){
   .event-card.haldi{width:min(94%,430px)}
-  .haldi .event-copy{top:9%;left:13%;right:13%;height:41%;padding:.25rem}
+  .haldi .event-copy{top:18%;left:21%;right:14%;height:45%;padding:.25rem}
   .haldi .event-day{font-size:.5rem}
   .haldi .event-copy h3{font-size:clamp(2.2rem,11vw,3rem)}
   .haldi .event-copy>p:not(.event-day){font-size:.78rem}
