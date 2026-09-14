@@ -349,7 +349,7 @@
 }
 @media(max-width:680px){
   .event-card.mehendi{width:min(94%,430px)}
-  .mehendi .event-copy{top:7%;left:17%;right:17%;height:49%;padding:.3rem;color:#203b31}
+  .mehendi .event-copy{top:12%;left:17%;right:17%;height:49%;padding:.3rem;color:#203b31}
   .mehendi .event-day{font-size:.48rem}
   .mehendi .event-copy h3{color:#6d332f;font-size:clamp(1.75rem,8vw,2.35rem)}
   .mehendi .event-copy>p:not(.event-day){color:#1d392f;font-size:.78rem}
