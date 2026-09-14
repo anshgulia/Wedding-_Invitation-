@@ -270,3 +270,16 @@
   .closing{min-height:82svh;padding-top:4.5rem;padding-bottom:2rem}
   .closing::before{background-size:cover;background-position:center center}
 }
+
+/* Continuous atmosphere layer: petals remain in view throughout the full scroll. */
+.site-petals{
+  position:fixed;
+  inset:0;
+  z-index:7000;
+  overflow:hidden;
+  pointer-events:none;
+}
+.site-petals .petal{
+  opacity:.66;
+  filter:drop-shadow(0 2px 3px rgba(65,39,28,.14));
+}
