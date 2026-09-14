@@ -235,3 +235,38 @@
   letter-spacing:-.08em;
   transform:translate(-52%,-48%)!important;
 }
+
+/* Clearly uppercase matching S&A signatures and the new closing portrait. */
+.signature-mark,
+.monogram-button .monogram-letters.signature-mark{
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:-.06em;
+}
+.monogram-button .monogram-letters.signature-mark{
+  font-size:5.5rem;
+  transform:translate(-51%,-51%)!important;
+}
+.closing .closing-monogram.signature-mark{
+  color:#ead29b;
+  font-size:5.3rem;
+  line-height:1;
+}
+.closing{
+  justify-content:flex-start;
+  padding-top:clamp(4rem,9vh,7rem);
+}
+.closing::before{
+  background-image:url("assts/closing-couple-v2.webp");
+  background-position:center 60%;
+  background-size:cover;
+}
+.closing::after{
+  background:linear-gradient(180deg,rgba(10,38,34,.82) 0%,rgba(10,38,34,.5) 22%,rgba(10,38,34,.08) 53%,rgba(10,38,34,.48) 100%);
+}
+@media(max-width:680px){
+  .closing{min-height:82svh;padding-top:4.5rem;padding-bottom:2rem}
+  .closing::before{background-size:cover;background-position:center center}
+}
