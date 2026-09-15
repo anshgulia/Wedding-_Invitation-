@@ -884,7 +884,14 @@ img,canvas{max-width:100%}
     linear-gradient(140deg,#173f35,#285c49 52%,#651522);
 }
 .scratch-card{border:1px solid rgba(213,174,91,.78);box-shadow:0 20px 60px rgba(28,0,6,.38)}
+.scratch-card canvas{background:linear-gradient(140deg,#173f35,#285c49 52%,#651522)}
 .scratch-hint{background:rgba(45,12,20,.82);color:#f4d891;border:1px solid rgba(218,179,94,.55)}
+.event-card.mehendi{background:#4d0b14}
+.mehendi .event-art{
+  inset:-1px;
+  width:calc(100% + 2px);
+  height:calc(100% + 2px);
+}
 @media(max-width:680px){
   .section{padding-left:1rem;padding-right:1rem}
   .event-card.mehendi,.event-card.haldi,.event-card.wedding,.event-card.dinner{
