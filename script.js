@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   const invitation=document.getElementById("invitation");
   const music=document.getElementById("wedding-music");
   const musicToggle=document.getElementById("music-toggle");
+  const peacock=document.getElementById("peacock-companion");
   const reduced=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const petals=document.getElementById("falling-petals");
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     invitation?.classList.add("visible");
     invitation?.setAttribute("aria-hidden","false");
     document.body.classList.remove("locked");
+    peacock?.classList.add("active");
     setTimeout(()=>document.querySelector(".hero")?.scrollIntoView(),80);
   },{once:true});
   musicToggle?.addEventListener("click",async()=>{if(!music)return;if(music.paused){await startMusic()}else{music.pause();musicToggle.classList.add("paused")}});
@@ -82,4 +84,15 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   const items=document.querySelectorAll(".reveal");
   if(reduced)items.forEach(el=>el.classList.add("in-view"));else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("in-view");observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:"0px 0px -30px"});items.forEach(el=>observer.observe(el))}
+
+  const closing=document.querySelector(".closing");
+  if(closing&&peacock){
+    const flightObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+      if(entry.isIntersecting&&entry.intersectionRatio>.45){
+        peacock.classList.add("fly-away");
+        flightObserver.disconnect();
+      }
+    }),{threshold:[.45,.6]});
+    flightObserver.observe(closing);
+  }
 });

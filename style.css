@@ -726,3 +726,65 @@
   .closing>h2{font-size:clamp(2.25rem,10.5vw,3.35rem)}
   .closing>small{max-width:88%;font-size:.58rem;line-height:1.25}
 }
+
+/* Royal backdrop: one continuous burgundy floral layer beneath the invitation. */
+body{
+  background-color:#4b0b14;
+  background-image:
+    linear-gradient(90deg,rgba(30,2,8,.32),transparent 18% 82%,rgba(30,2,8,.32)),
+    url("assts/royal-burgundy-bg-v1.webp");
+  background-position:center top,center top;
+  background-size:100% 100%,min(100vw,1180px) auto;
+  background-repeat:no-repeat,repeat-y;
+}
+.save-date,.schedule,.venue,.rsvp{background:transparent}
+.save-date::after,.schedule::before,.rsvp::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(74,8,18,.12),rgba(45,3,10,.3));
+}
+.save-date>*:not(.section-kicker),.save-date>.section-kicker,.schedule>*,.rsvp>*{position:relative;z-index:1}
+.save-date .section-kicker,.schedule>.section-kicker,.schedule>.section-heading,.schedule>.section-intro{color:#fff3df;text-shadow:0 2px 16px rgba(20,0,5,.9)}
+.save-date .section-kicker,.schedule>.section-kicker{color:#e8c878}
+.save-date::before{position:relative;z-index:1;color:#e8c878}
+.countdown{color:#fff4df;border-color:rgba(232,200,120,.58)}
+.countdown div{border-color:rgba(232,200,120,.38)}
+.rsvp-card,.venue-card{border:1px solid rgba(210,165,77,.72);box-shadow:0 25px 70px rgba(21,0,4,.36)}
+
+/* Living peacock companion: idle movement, head turns and final flight. */
+.peacock-companion{
+  position:fixed;
+  z-index:7980;
+  right:54px;
+  bottom:-10px;
+  width:clamp(150px,19vw,245px);
+  aspect-ratio:899/920;
+  pointer-events:none;
+  opacity:0;
+  transform:translateY(34px) scale(.9);
+  transform-origin:75% 100%;
+  filter:drop-shadow(0 12px 14px rgba(14,0,5,.46));
+  transition:opacity .8s ease,transform .8s ease;
+}
+.peacock-companion.active{opacity:1;transform:translateY(0) scale(1);animation:peacockBreathe 4.8s ease-in-out infinite}
+.peacock-body,.peacock-head{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.peacock-head{z-index:2;clip-path:polygon(68% 0,100% 0,100% 45%,67% 38%);transform-origin:84% 25%;animation:peacockLook 6.5s ease-in-out infinite}
+.peacock-glow{position:absolute;z-index:3;left:3%;bottom:5%;width:70%;height:42%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(79,218,186,.2),transparent 64%);mix-blend-mode:screen;animation:tailShimmer 3.8s ease-in-out infinite}
+.peacock-companion.fly-away{animation:peacockFlight 2.6s cubic-bezier(.36,.02,.7,.98) forwards}
+@keyframes peacockBreathe{0%,100%{transform:translateY(0) rotate(.25deg)}50%{transform:translateY(-4px) rotate(-.35deg)}}
+@keyframes peacockLook{0%,18%,100%{transform:rotate(0)}32%,48%{transform:rotate(-2.8deg) translate(-2px,1px)}62%,78%{transform:rotate(2.2deg) translate(1px,-1px)}}
+@keyframes tailShimmer{0%,100%{opacity:.25;transform:translateX(-3%) scale(.96)}50%{opacity:.7;transform:translateX(4%) scale(1.04)}}
+@keyframes peacockFlight{0%{opacity:1;transform:translate(0,0) rotate(0) scale(1)}22%{transform:translate(-3vw,-6vh) rotate(-6deg) scale(1.04)}100%{opacity:0;transform:translate(28vw,-125vh) rotate(-20deg) scale(.62)}}
+@media(max-width:680px){
+  body{background-size:100% 100%,100vw auto}
+  .section{padding-left:1rem;padding-right:1rem}
+  .peacock-companion{right:42px;bottom:-3px;width:108px}
+}
+@media(prefers-reduced-motion:reduce){
+  .peacock-companion.active{animation:none}
+  .peacock-head,.peacock-glow{animation:none}
+  .peacock-companion.fly-away{opacity:0;transition:opacity .4s ease}
+}
