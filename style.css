@@ -236,6 +236,29 @@
   transform:translate(-52%,-48%)!important;
 }
 
+/* One consistent, classical ampersand across the opening, hero and closing panels. */
+.name-amp{
+  display:inline-block;
+  margin:0 .08em;
+  font-family:Baskerville,"Libre Baskerville",Georgia,serif;
+  font-size:.72em;
+  font-style:italic;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.04em;
+  text-transform:none;
+  transform:translateY(-.03em);
+}
+.monogram-button .monogram-letters .name-amp{
+  position:static;
+  top:auto;
+  margin:0 .02em;
+  color:var(--gold);
+  font-size:.5em;
+  transform:translateY(-.08em)!important;
+}
+.closing-monogram .name-amp{color:#d7bd83}
+
 /* Clearly uppercase matching S&A signatures and the new closing portrait. */
 .signature-mark,
 .monogram-button .monogram-letters.signature-mark{
@@ -291,7 +314,7 @@
 /* Cleaned floral artwork for Mehendi & Sangeet. */
 .mehendi .event-art{
   aspect-ratio:900/1218;
-  background:#e9b082 url("assts/mehendi-sangeet-v2.webp") center/cover no-repeat;
+  background:#e9b082 url("assts/mehendi-sangeet-v3.webp") center/cover no-repeat;
 }
 .mehendi .event-art>.lantern,
 .mehendi .event-art>.stage{display:none}
@@ -399,18 +422,22 @@
 .haldi .event-rule{margin:.5rem 0;background:#8f551d}
 .haldi .event-copy>p:not(.event-day){margin:.1rem 0;font-weight:600}
 .haldi .event-copy small{
+  width:100%;
+  max-width:210px;
   margin-top:.65rem;
   color:#60401f;
   font-weight:600;
+  line-height:1.28;
+  text-align:center;
   opacity:1;
 }
 @media(max-width:680px){
   .event-card.haldi{width:min(94%,430px)}
-  .haldi .event-copy{top:18%;left:21%;right:14%;height:45%;padding:.25rem}
+  .haldi .event-copy{top:17%;left:20%;right:20%;height:47%;padding:.25rem}
   .haldi .event-day{font-size:.5rem}
   .haldi .event-copy h3{font-size:clamp(2.2rem,11vw,3rem)}
   .haldi .event-copy>p:not(.event-day){font-size:.78rem}
-  .haldi .event-copy small{margin-top:.45rem;font-size:.7rem}
+  .haldi .event-copy small{max-width:165px;margin-top:.45rem;font-size:.72rem;line-height:1.3}
 }
 
 
