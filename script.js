@@ -32,6 +32,35 @@ document.addEventListener("DOMContentLoaded",()=>{
   musicToggle?.addEventListener("click",async()=>{if(!music)return;if(music.paused){await startMusic()}else{music.pause();musicToggle.classList.add("paused")}});
   document.querySelectorAll("[data-scroll]").forEach(btn=>btn.addEventListener("click",()=>document.querySelector(btn.dataset.scroll)?.scrollIntoView({behavior:reduced?"auto":"smooth"})));
 
+  const rsvpForm=document.getElementById("rsvp-form");
+  const rsvpStatus=document.getElementById("rsvp-status");
+  const RSVP_ENDPOINT="";
+  rsvpForm?.addEventListener("submit",async event=>{
+    event.preventDefault();
+    if(!rsvpForm.reportValidity())return;
+    const submit=rsvpForm.querySelector("button[type='submit']");
+    submit.disabled=true;
+    rsvpStatus.textContent="Sending your reply…";
+    rsvpStatus.className="rsvp-status sending";
+    if(!RSVP_ENDPOINT){
+      rsvpStatus.textContent="RSVP submissions are being connected. Please try again shortly.";
+      rsvpStatus.className="rsvp-status error";
+      submit.disabled=false;
+      return;
+    }
+    const data=Object.fromEntries(new FormData(rsvpForm).entries());
+    data.submittedAt=new Date().toISOString();
+    try{
+      await fetch(RSVP_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
+      rsvpForm.reset();
+      rsvpStatus.textContent="Thank you. Your RSVP has been received.";
+      rsvpStatus.className="rsvp-status success";
+    }catch(error){
+      rsvpStatus.textContent="Your RSVP could not be sent. Please check your connection and try again.";
+      rsvpStatus.className="rsvp-status error";
+    }finally{submit.disabled=false}
+  });
+
   const target=new Date("2027-04-09T19:00:00+08:00").getTime();
   const fields={days:document.getElementById("cd-days"),hours:document.getElementById("cd-hours"),mins:document.getElementById("cd-mins"),secs:document.getElementById("cd-secs")};
   const pad=(n,l=2)=>String(n).padStart(l,"0");
