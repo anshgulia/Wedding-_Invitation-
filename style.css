@@ -881,17 +881,19 @@ img,canvas{max-width:100%}
   background:
     radial-gradient(circle at 20% 30%,rgba(226,185,102,.8) 0 2%,transparent 3%),
     radial-gradient(circle at 80% 72%,rgba(226,185,102,.7) 0 2%,transparent 3%),
-    linear-gradient(140deg,#173f35,#285c49 52%,#651522);
+    linear-gradient(140deg,#4a0914,#681522 52%,#861f2d);
 }
 .scratch-card{border:1px solid rgba(213,174,91,.78);box-shadow:0 20px 60px rgba(28,0,6,.38)}
-.scratch-card canvas{background:linear-gradient(140deg,#173f35,#285c49 52%,#651522)}
+.scratch-card canvas{background:linear-gradient(140deg,#102f28,#1d493b 52%,#28614c)}
 .scratch-hint{background:rgba(45,12,20,.82);color:#f4d891;border:1px solid rgba(218,179,94,.55)}
 .event-card.mehendi{background:#4d0b14}
 .mehendi .event-art{
   inset:-1px;
   width:calc(100% + 2px);
   height:calc(100% + 2px);
+  background-size:104% 104%;
 }
+.dinner .event-copy{top:calc(50% - 19px)}
 @media(max-width:680px){
   .section{padding-left:1rem;padding-right:1rem}
   .event-card.mehendi,.event-card.haldi,.event-card.wedding,.event-card.dinner{
@@ -910,6 +912,6 @@ img,canvas{max-width:100%}
     line-height:1.34;
   }
   .wedding .event-copy>p.event-dress{max-width:255px;font-size:.72rem;line-height:1.3}
-  .dinner .event-copy{top:50%;height:auto;transform:translate(-50%,-50%)}
+  .dinner .event-copy{top:calc(50% - 19px);height:auto;transform:translate(-50%,-50%)}
   .peacock-companion{right:30px;width:132px}
 }
