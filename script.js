@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   const rsvpForm=document.getElementById("rsvp-form");
   const rsvpStatus=document.getElementById("rsvp-status");
-  const RSVP_ENDPOINT="";
+  const RSVP_ENDPOINT="https://script.google.com/macros/s/AKfycbx1TVw1RI3sjRmfaDfcxvoL0B_9DU9vP2aJhaOKtJ3KiWIAdGvw8OAqVUnoj444JYG6/exec";
   rsvpForm?.addEventListener("submit",async event=>{
     event.preventDefault();
     if(!rsvpForm.reportValidity())return;
