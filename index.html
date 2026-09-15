@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Great+Vibes&family=Italiana&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=final-copy-1">
+  <link rel="stylesheet" href="style.css?v=rsvp-1">
 </head>
 <body class="locked">
   <div class="paper-grain" aria-hidden="true"></div>
@@ -126,6 +126,36 @@
       </div>
     </section>
 
+    <section class="rsvp section" id="rsvp">
+      <div class="rsvp-card reveal">
+        <p class="section-kicker">Your reply</p>
+        <h2>RSVP</h2>
+        <p class="rsvp-intro">We would be pleased to have you at our wedding.</p>
+        <p class="rsvp-deadline">Kindly RSVP by 4th October 2026</p>
+
+        <form class="rsvp-form" id="rsvp-form" novalidate>
+          <label for="rsvp-name">Name</label>
+          <input id="rsvp-name" name="name" type="text" autocomplete="name" required>
+
+          <label for="rsvp-guests">Number of guests</label>
+          <input id="rsvp-guests" name="guests" type="number" min="1" max="20" inputmode="numeric" required>
+
+          <fieldset>
+            <legend>Will you be attending?</legend>
+            <label class="rsvp-choice"><input type="radio" name="attendance" value="Yes" required><span>Accepts with pleasure</span></label>
+            <label class="rsvp-choice"><input type="radio" name="attendance" value="No" required><span>Declines with regret</span></label>
+          </fieldset>
+
+          <label for="rsvp-requirements">Dietary or other requirements</label>
+          <textarea id="rsvp-requirements" name="requirements" rows="4" placeholder="Please tell us about allergies, dietary needs, accessibility, or anything else we should know."></textarea>
+
+          <input class="rsvp-trap" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <button class="rsvp-submit" type="submit">Send RSVP</button>
+          <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
     <footer class="closing section">
       <div class="closing-monogram signature-mark">S<span class="name-amp">&amp;</span>A</div>
       <p>With love</p>
@@ -133,6 +163,8 @@
       <small>We cannot wait to celebrate with you in Bali.</small>
     </footer>
   </main>
+
+  <button class="rsvp-tab" data-scroll="#rsvp" type="button">RSVP</button>
 
   <div class="falling-petals site-petals" id="falling-petals" aria-hidden="true"></div>
 
