@@ -948,3 +948,52 @@ img,canvas{max-width:100%}
   from{transform:scale(1.02) translate3d(-.25%,0,0)}
   to{transform:scale(1.065) translate3d(.25%,-.35%,0)}
 }
+
+/* Living Haldi artwork: slow depth drift with warm moving light. */
+.haldi .event-art{
+  inset:-1.5%;
+  width:103%;
+  height:103%;
+  transform-origin:50% 42%;
+  animation:haldiSceneDrift 13s ease-in-out infinite alternate;
+  will-change:transform,filter;
+}
+.haldi .event-art::before,
+.haldi .event-art::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+.haldi .event-art::before{
+  z-index:1;
+  background:
+    radial-gradient(circle at 22% 24%,rgba(255,231,132,.34),transparent 20%),
+    radial-gradient(circle at 76% 32%,rgba(255,196,69,.2),transparent 22%);
+  mix-blend-mode:screen;
+  animation:haldiSunGlow 6.5s ease-in-out infinite alternate;
+}
+.haldi .event-art::after{
+  z-index:2;
+  background:linear-gradient(112deg,transparent 25%,rgba(255,240,172,.2) 44%,transparent 62%);
+  transform:translateX(-70%);
+  animation:haldiLightSweep 9s ease-in-out infinite;
+}
+@keyframes haldiSceneDrift{
+  0%{transform:scale(1.015) translate3d(-.35%,.2%,0);filter:saturate(1) brightness(1)}
+  50%{filter:saturate(1.06) brightness(1.035)}
+  100%{transform:scale(1.055) translate3d(.45%,-.55%,0);filter:saturate(1.03) brightness(1.015)}
+}
+@keyframes haldiSunGlow{
+  from{opacity:.42;transform:translate3d(-1%,1%,0) scale(.98)}
+  to{opacity:.9;transform:translate3d(1.5%,-1%,0) scale(1.04)}
+}
+@keyframes haldiLightSweep{
+  0%,18%{transform:translateX(-75%);opacity:0}
+  38%{opacity:.7}
+  62%{opacity:.35}
+  82%,100%{transform:translateX(75%);opacity:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .haldi .event-art,.haldi .event-art::before,.haldi .event-art::after{animation:none}
+}
