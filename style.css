@@ -915,3 +915,36 @@ img,canvas{max-width:100%}
   .dinner .event-copy{top:calc(50% - 19px);height:auto;transform:translate(-50%,-50%)}
   .peacock-companion{right:30px;width:132px}
 }
+
+/* Royal first page: continue the burgundy floral world from the opening section. */
+.hero{
+  background:#4b0b14;
+}
+.hero-sky{
+  opacity:1;
+  background:
+    radial-gradient(ellipse at 50% 18%,rgba(122,31,43,.12),rgba(42,2,10,.38) 78%),
+    linear-gradient(180deg,rgba(42,2,10,.08) 0%,rgba(42,2,10,.08) 72%,#4b0b14 100%),
+    url("assts/royal-burgundy-bg-v1.webp") center top/cover no-repeat;
+  animation:royalHeroDrift 18s ease-in-out infinite alternate;
+  transform:scale(1.02);
+}
+.hero-copy{
+  color:#fff4df;
+  border-color:rgba(220,181,94,.58);
+  background:rgba(65,7,17,.68);
+  box-shadow:0 16px 48px rgba(20,0,5,.34);
+  text-shadow:0 2px 14px rgba(20,0,5,.76);
+}
+.hero h2 span{color:#e4c170}
+.hero-line{color:#f4dfb0}
+.hero-invite{color:#fff4df;text-shadow:0 2px 14px rgba(20,0,5,.9)}
+.scroll-prompt{
+  color:#f5dda4;
+  border:1px solid rgba(220,181,94,.58);
+  background:rgba(42,12,20,.88);
+}
+@keyframes royalHeroDrift{
+  from{transform:scale(1.02) translate3d(-.25%,0,0)}
+  to{transform:scale(1.065) translate3d(.25%,-.35%,0)}
+}
