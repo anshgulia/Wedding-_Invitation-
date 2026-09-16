@@ -997,3 +997,86 @@ img,canvas{max-width:100%}
 @media(prefers-reduced-motion:reduce){
   .haldi .event-art,.haldi .event-art::before,.haldi .event-art::after{animation:none}
 }
+
+/* Layered Haldi breeze: individual flowers and foliage move within the photograph. */
+.haldi .event-art{
+  animation:none;
+  transform:none;
+  filter:none;
+  will-change:auto;
+  overflow:hidden;
+}
+.haldi-layer{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  background:url("assts/haldi.png") center/100% 100% no-repeat;
+  pointer-events:none;
+  will-change:transform;
+}
+.haldi-canopy{
+  clip-path:polygon(0 0,100% 0,100% 27%,83% 25%,73% 20%,58% 24%,43% 20%,25% 27%,0 24%);
+  transform-origin:50% 2%;
+  animation:haldiCanopyBreeze 4.8s ease-in-out infinite alternate;
+}
+.haldi-left-flowers{
+  clip-path:polygon(0 10%,34% 12%,31% 38%,25% 60%,0 69%);
+  transform-origin:5% 48%;
+  animation:haldiLeftBreeze 3.7s ease-in-out infinite alternate;
+}
+.haldi-right-flowers{
+  clip-path:polygon(70% 9%,100% 10%,100% 72%,74% 61%,68% 37%);
+  transform-origin:96% 49%;
+  animation:haldiRightBreeze 4.2s ease-in-out -.9s infinite alternate;
+}
+.haldi-garlands{
+  clip-path:polygon(69% 0,100% 0,100% 46%,82% 39%,72% 27%);
+  transform-origin:88% 0;
+  animation:haldiGarlandSway 3.2s ease-in-out -.4s infinite alternate;
+}
+.haldi-petal{
+  position:absolute;
+  z-index:5;
+  top:-5%;
+  width:clamp(5px,1.3vw,10px);
+  height:clamp(8px,2vw,15px);
+  border-radius:75% 15% 70% 25%;
+  background:linear-gradient(145deg,#ffd45b,#ec8b22 72%);
+  box-shadow:0 1px 3px rgba(91,45,5,.24);
+  opacity:0;
+  pointer-events:none;
+  animation:haldiPetalFlight var(--petal-time) linear var(--petal-delay) infinite;
+}
+.hp1{left:15%;--petal-time:7.4s;--petal-delay:-1.2s}
+.hp2{left:29%;--petal-time:8.3s;--petal-delay:-5.1s;background:linear-gradient(145deg,#fff1a3,#eaa329)}
+.hp3{left:44%;--petal-time:6.9s;--petal-delay:-3.4s;background:linear-gradient(145deg,#f9c65d,#d96b1d)}
+.hp4{left:61%;--petal-time:8.8s;--petal-delay:-6.6s}
+.hp5{left:76%;--petal-time:7.8s;--petal-delay:-2.5s;background:linear-gradient(145deg,#ffe08a,#ef9b28)}
+.hp6{left:88%;--petal-time:9.2s;--petal-delay:-7.3s;background:linear-gradient(145deg,#f7b540,#d96818)}
+@keyframes haldiCanopyBreeze{
+  from{transform:rotate(-.35deg) translate3d(-1px,0,0)}
+  to{transform:rotate(.55deg) translate3d(2px,1px,0)}
+}
+@keyframes haldiLeftBreeze{
+  from{transform:rotate(.15deg) translate3d(0,1px,0)}
+  to{transform:rotate(1.15deg) translate3d(3px,-1px,0)}
+}
+@keyframes haldiRightBreeze{
+  from{transform:rotate(-.2deg) translate3d(0,0,0)}
+  to{transform:rotate(-1.05deg) translate3d(-3px,-1px,0)}
+}
+@keyframes haldiGarlandSway{
+  from{transform:rotate(-.65deg)}
+  to{transform:rotate(1.1deg)}
+}
+@keyframes haldiPetalFlight{
+  0%{opacity:0;transform:translate3d(-10px,-4%,0) rotate(0deg)}
+  10%{opacity:.88}
+  45%{transform:translate3d(34px,48vh,0) rotate(190deg)}
+  82%{opacity:.78}
+  100%{opacity:0;transform:translate3d(-18px,105vh,0) rotate(420deg)}
+}
+@media(prefers-reduced-motion:reduce){
+  .haldi-layer,.haldi-petal{animation:none}
+  .haldi-petal{display:none}
+}
